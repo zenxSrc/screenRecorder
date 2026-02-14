@@ -1,4 +1,4 @@
-# Linux Screen Recorder
+# 🎥 Linux Screen Recorder
 
 A lightweight, dependency-free (except FFmpeg) command-line screen recorder for Linux (X11) with a simple interactive TUI menu.
 
