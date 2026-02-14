@@ -1,85 +1,82 @@
-🎥 ScreenRecorder
-
-A lightweight, efficient screen recording tool built for seamless capture of your desktop, applications, or specific regions. Perfect for tutorials, gameplay, or demos record in high quality with minimal overhead.
-
-​
+Linux Screen Recorder is a simple, terminal-based tool that uses FFmpeg to capture your Linux screen (X11) with optional system audio. It offers an interactive menu for easy setup of resolution, audio, and output—no compilation needed, just FFmpeg installed.​
 ✨ Features
 
-    Full Screen or Region Capture: Select entire screen, windows, or custom areas.
+    Interactive TUI: Colorful console menu for resolution (720p/1080p/native), audio (system or none), and filename selection.
 
-    Audio Support: Record system sound, microphone, or both simultaneously.
+    High-Quality Capture: 60 FPS, libx264 encoding (CRF 23), optional scaling; system audio via PulseAudio monitor.
 
-    Customizable Output: Export as MP4, AVI, or GIF with adjustable resolution and FPS.
+    Smart Detection: Auto-detects screen resolution (xdpyinfo/xrandr) and default audio sink.
 
-    Hotkeys & Controls: Pause/resume with keyboard shortcuts; overlay timer and stats.
+    Graceful Controls: 'q' to stop FFmpeg safely; Ctrl+C handled but warned against (avoids corruption).
 
-    Lightweight: Low CPU usage; no watermarks or ads.
-
-    Cross-Platform: Works on Windows, Linux (with tweaks for your setup).
+    Zero Dependencies Beyond FFmpeg: Pure C++ with standard libs + shell exec for one-liner recording.​
 
 🚀 Quick Start
 
-    Clone the Repo:
+    Prerequisites (one command on Ubuntu/Debian):
 
     text
-    git clone https://github.com/zenxSrc/screenRecorder.git
-    cd screenRecorder
+    sudo apt update && sudo apt install ffmpeg pulseaudio-utils x11-utils xrandr
 
-    Install Dependencies (assumes C/C++ build):
+    PulseAudio for system audio monitor.​
 
-    text
-    # For Linux (your preferred OS)
-    sudo apt update
-    sudo apt install build-essential libx11-dev libxdo-dev libxtst-dev ffmpeg
-    # Or use your distro's package manager
-
-    Build:
+    Compile & Run:
 
     text
-    make  # Or cmake . && make if CMakeLists.txt present
-
-    Run:
-
-    text
+    g++ -std=c++17 -O2 recorder.cpp -o screenrecorder
+    chmod +x screenrecorder
     ./screenrecorder
 
-        Select area with mouse drag.
+    Usage Flow:
 
-        Hit Space to start/stop, Esc to cancel.
+        Choose resolution (e.g., 1080p).
 
-🛠️ Build & Customization
+        Select audio (system playback like games/music).
 
-Core likely uses X11 APIs for Linux capture (grab pixels via XGetImage), FFmpeg for encoding, and XTest for hotkeys. Edit main.c or src/capture.cpp for tweaks like FPS (default 30) or bitrate.
+        Enter filename (default: recording.mp4).
 
-    Requirements: GCC/Clang, FFmpeg, X11 libs.
+        Press Enter → Recording starts; press q in FFmpeg window to stop.​
 
-    Advanced Build:
+Example output file: Crisp 1920x1080@60fps MP4, ready for VLC/mpv.
+⚙️ Customization
 
-    text
-    cmake -DCMAKE_BUILD_TYPE=Release .
-    make -j$(nproc)
+Edit recorder.cpp for tweaks:
 
-Flag	Description	Default
--r 1920x1080	Resolution	Auto-detect
--f 60	FPS	30
--a	Include audio	Off
--o output.mp4	Output file	timestamp.mp4 ​
-📁 Project Structure
+    Framerate: Change -framerate 60 and -r 60.
 
-text
-screenRecorder/
-├── src/          # Core capture logic (C/C++)
-├── include/      # Headers for X11/FFmpeg
-├── build.sh      # Linux build script
-├── Makefile      # Or CMakeLists.txt
-└── README.md     # This file!
+    Quality: Adjust -crf 23 (lower = better/smaller files).
+
+    Audio: Modify getSystemAudioDevice() for mic or custom sinks.​
+
+Option	Menu Choice	Command Snippet
+720p	1	-vf scale=1280:720
+1080p	2	-vf scale=1920:1080
+Native	3	Auto via detectScreenResolution()
+System Audio	1	-f pulse -i <sink>.monitor
+🧪 Troubleshooting
+
+    No audio? Ensure PulseAudio running; check pactl get-default-sink.
+
+    Black screen? Run in X11 session (not Wayland); set DISPLAY=:0.
+
+    FFmpeg missing? Script checks and prompts install.
+
+    Ctrl+C corruption? Use 'q' instead—script warns!​
+
+📝 Build Details
+
+Single-file C++17 app (~11k chars). Uses:
+
+    <iostream>, <string>, etc. for TUI (ANSI colors, input trimming).
+
+    popen/exec for shell cmds (xdpyinfo, pactl).
+
+    sig_atomic_t for SIGINT handling.
+    No external libs—compiles anywhere with g++.​
 
 🤝 Contributing
 
-Fork, branch, PR! Fixes for audio sync or Wayland support welcome. Test on Ubuntu/Fedora.
+Add Wayland support? Mic input? PRs welcome! Test on your Siliguri setup (Linux preferred).​
 📄 License
 
-MIT License – free to use, modify, distribute.​
-🙌 Support
-
-Star the repo ⭐ | Issues? Open one! Built for devs like you in Siliguri coding C++ daily. Questions? Ping in Discussions.
+MIT – Fork and tweak freely. Star if useful! ⭐
