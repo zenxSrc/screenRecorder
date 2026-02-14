@@ -75,7 +75,6 @@ Single-file C++17 app (~11k chars). Uses:
 
 🤝 Contributing
 
-Add Wayland support? Mic input? PRs welcome! Test on your Siliguri setup (Linux preferred).​
-📄 License
+Add Wayland support? Mic input? PRs welcome! Test on your setup (Linux preferred).​
 
 MIT – Fork and tweak freely. Star if useful! ⭐
