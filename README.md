@@ -1,6 +1,6 @@
 🎥 ScreenRecorder
 
-A lightweight, efficient screen recording tool built for seamless capture of your desktop, applications, or specific regions. Perfect for tutorials, gameplay, or demos—record in high quality with minimal overhead.
+A lightweight, efficient screen recording tool built for seamless capture of your desktop, applications, or specific regions. Perfect for tutorials, gameplay, or demos record in high quality with minimal overhead.
 
 ​
 ✨ Features
