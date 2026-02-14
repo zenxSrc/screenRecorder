@@ -1,80 +1,38 @@
-Linux Screen Recorder is a simple, terminal-based tool that uses FFmpeg to capture your Linux screen (X11) with optional system audio. It offers an interactive menu for easy setup of resolution, audio, and output—no compilation needed, just FFmpeg installed.​
-✨ Features
+# Linux Screen Recorder
 
-    Interactive TUI: Colorful console menu for resolution (720p/1080p/native), audio (system or none), and filename selection.
+A lightweight, dependency-free (except FFmpeg) command-line screen recorder for Linux (X11) with a simple interactive TUI menu.
 
-    High-Quality Capture: 60 FPS, libx264 encoding (CRF 23), optional scaling; system audio via PulseAudio monitor.
+## Features
 
-    Smart Detection: Auto-detects screen resolution (xdpyinfo/xrandr) and default audio sink.
+- Records at 60 FPS using libx264 (CRF 23 – good quality/size balance)
+- Choice of resolution: 720p, 1080p, or native screen resolution
+- Optional system audio capture (via PulseAudio monitor source)
+- Clean stop with 'q' key (recommended) to avoid video corruption
+- Very low CPU usage thanks to ultrafast preset
+- Single-file C++17 source – easy to compile and run
+- Colorful terminal interface with clear instructions
 
-    Graceful Controls: 'q' to stop FFmpeg safely; Ctrl+C handled but warned against (avoids corruption).
+## Requirements
 
-    Zero Dependencies Beyond FFmpeg: Pure C++ with standard libs + shell exec for one-liner recording.​
+- Linux with X11 (Wayland **not** supported)
+- FFmpeg installed (`libx264` and `aac` encoders must be available)
+- `xdpyinfo` or `xrandr` (usually pre-installed) for resolution detection
+- PulseAudio (for system audio capture)
 
-🚀 Quick Start
+### Install FFmpeg (Ubuntu/Debian)
 
-    Prerequisites (one command on Ubuntu/Debian):
+```bash
+sudo apt update
+sudo apt install ffmpeg
+```
+## Installation
 
-    sudo apt update && sudo apt install ffmpeg pulseaudio-utils x11-utils xrandr
-
-    PulseAudio for system audio monitor.​
-
-    Compile & Run:
-
-    text
-    g++ -std=c++17 -O2 recorder.cpp -o screenrecorder
-    chmod +x screenrecorder
-    ./screenrecorder
-
-    Usage Flow:
-
-        Choose resolution (e.g., 1080p).
-
-        Select audio (system playback like games/music).
-
-        Enter filename (default: recording.mp4).
-
-        Press Enter → Recording starts; press q in FFmpeg window to stop.​
-
-Example output file: Crisp 1920x1080@60fps MP4, ready for VLC/mpv.
-⚙️ Customization
-
-Edit recorder.cpp for tweaks:
-
-    Framerate: Change -framerate 60 and -r 60.
-
-    Quality: Adjust -crf 23 (lower = better/smaller files).
-
-    Audio: Modify getSystemAudioDevice() for mic or custom sinks.​
-
-Option	Menu Choice	Command Snippet
-720p	1	-vf scale=1280:720
-1080p	2	-vf scale=1920:1080
-Native	3	Auto via detectScreenResolution()
-System Audio	1	-f pulse -i <sink>.monitor
-🧪 Troubleshooting
-
-    No audio? Ensure PulseAudio running; check pactl get-default-sink.
-
-    Black screen? Run in X11 session (not Wayland); set DISPLAY=:0.
-
-    FFmpeg missing? Script checks and prompts install.
-
-    Ctrl+C corruption? Use 'q' instead—script warns!​
-
-📝 Build Details
-
-Single-file C++17 app (~11k chars). Uses:
-
-    <iostream>, <string>, etc. for TUI (ANSI colors, input trimming).
-
-    popen/exec for shell cmds (xdpyinfo, pactl).
-
-    sig_atomic_t for SIGINT handling.
-    No external libs—compiles anywhere with g++.​
-
-🤝 Contributing
-
-Add Wayland support? Mic input? PRs welcome! Test on your setup (Linux preferred).​
-
-MIT – Fork and tweak freely. Star if useful! ⭐
+Clone the repository:
+```
+git clone https://github.com/zenxSrc/screenRecorder.git
+cd screenRecorder
+```
+Compile the single source file:
+```
+g++ -std=c++17 -O2 recorder.cpp -o screenrecorder
+```
