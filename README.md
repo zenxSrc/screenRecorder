@@ -76,4 +76,4 @@ sudo pacman -S ffmpeg gcc
 Feel free to open issues or pull requests — especially welcome are Wayland support or additional features while keeping it minimal.
 
 ## License
-MIT License
+MIT License (https://github.com/zenxSrc/screenRecorder/tree/main?tab=MIT-1-ov-file#)
