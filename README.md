@@ -72,7 +72,8 @@ Arch:
 ```
 sudo pacman -S ffmpeg gcc
 ```
-Contributing
+## Contributing
 Feel free to open issues or pull requests — especially welcome are Wayland support or additional features while keeping it minimal.
-License
+
+## License
 MIT License
