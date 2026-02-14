@@ -53,14 +53,14 @@ Follow the on-screen prompts:
 ### Important: Avoid using Ctrl+C to stop — it may result in a corrupted/incomplete video file.
 
 Example Output Filename
-If you leave the filename blank → saves as recording.mp4
-You can also specify full paths: ~/Videos/my_gameplay.mp4
+- If you leave the filename blank → saves as recording.mp4
+- You can also specify full paths: ~/Videos/my_gameplay.mp4
 
 ## Known Limitations
 
-X11 only (no Wayland support yet)
-No microphone input (system audio only when enabled)
-No advanced encoding options (tuned for simplicity & performance)
+- X11 only (no Wayland support yet)
+- No microphone input (system audio only when enabled)
+- No advanced encoding options (tuned for simplicity & performance)
 
 ## Building on Other Distros
 Fedora:
