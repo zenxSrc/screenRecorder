@@ -8,11 +8,6 @@
 A blazing fast, **command-line only** screen recorder for Linux written in C++. Designed for servers, headless environments, and minimalists who hate bloat.
 
 
-
-# 🎥 Screen Recorder (no-gui)
-
-A lightweight C++ screen recording application.
-
 ## ✨ Features
 - Fast screen capture
 - Lightweight
