@@ -44,11 +44,11 @@ g++ -std=c++17 -O2 recorder.cpp -o screenrecorder
 ```
 Follow the on-screen prompts:
 
-Choose video quality (720p / 1080p / Native)
-Choose whether to record system audio
-Enter output filename (defaults to recording.mp4)
-Press ENTER to begin recording
-Press q in the FFmpeg terminal window to stop gracefully
+- Choose video quality (720p / 1080p / Native)
+- Choose whether to record system audio
+- Enter output filename (defaults to recording.mp4)
+- Press ENTER to begin recording
+- Press q in the FFmpeg terminal window to stop gracefully
 
 ### Important: Avoid using Ctrl+C to stop — it may result in a corrupted/incomplete video file.
 
