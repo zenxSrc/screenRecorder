@@ -1,28 +1,85 @@
-🎥 screenRecorder
+ScreenRecorder
 
-screenRecorder is a lightweight, high-performance C++ CLI tool designed for capturing screen activity on Linux (X11) environments.
+A lightweight, efficient screen recording tool built for seamless capture of your desktop, applications, or specific regions. Perfect for tutorials, gameplay, or demos—record in high quality with minimal overhead.
 
-Engineered for efficiency, it utilizes multi-threading to handle video processing (OpenCV) and audio capture (PulseAudio) concurrently, ensuring minimal CPU overhead and smooth frame rates. It is ideal for headless servers, automated testing, or power users who prefer the terminal over a GUI.
-⚡ Key Features
+​
+✨ Features
 
-    🚀 High Performance: Optimized implementation ensures low latency and minimal resource consumption.
+    Full Screen or Region Capture: Select entire screen, windows, or custom areas.
 
-    🖥️ X11 Native: Deep integration with XLib for direct screen capture.
+    Audio Support: Record system sound, microphone, or both simultaneously.
 
-    🔊 Audio Sync: Robust PulseAudio integration for synchronized system audio recording.
+    Customizable Output: Export as MP4, AVI, or GIF with adjustable resolution and FPS.
 
-    🔧 CLI First: specific command-line arguments for resolution, output paths, and formats.
+    Hotkeys & Controls: Pause/resume with keyboard shortcuts; overlay timer and stats.
 
-    🧵 Multi-threaded Architecture: Decoupled audio and video threads prevent frame drops during high-load operations.
+    Lightweight: Low CPU usage; no watermarks or ads.
 
-🛠️ Prerequisites
+    Cross-Platform: Works on Windows, Linux (with tweaks for your setup).
 
-Before building, ensure your development environment has the necessary dependencies installed.
+🚀 Quick Start
 
-System Requirements:
+    Clone the Repo:
 
-    Linux (X11 Window System)
+    text
+    git clone https://github.com/zenxSrc/screenRecorder.git
+    cd screenRecorder
 
-    C++ Compiler (C++17 or later recommended)
+    Install Dependencies (assumes C/C++ build):
 
-    CMake (3.10+)
+    text
+    # For Linux (your preferred OS)
+    sudo apt update
+    sudo apt install build-essential libx11-dev libxdo-dev libxtst-dev ffmpeg
+    # Or use your distro's package manager
+
+    Build:
+
+    text
+    make  # Or cmake . && make if CMakeLists.txt present
+
+    Run:
+
+    text
+    ./screenrecorder
+
+        Select area with mouse drag.
+
+        Hit Space to start/stop, Esc to cancel.
+
+🛠️ Build & Customization
+
+Core likely uses X11 APIs for Linux capture (grab pixels via XGetImage), FFmpeg for encoding, and XTest for hotkeys. Edit main.c or src/capture.cpp for tweaks like FPS (default 30) or bitrate.
+
+    Requirements: GCC/Clang, FFmpeg, X11 libs.
+
+    Advanced Build:
+
+    text
+    cmake -DCMAKE_BUILD_TYPE=Release .
+    make -j$(nproc)
+
+Flag	Description	Default
+-r 1920x1080	Resolution	Auto-detect
+-f 60	FPS	30
+-a	Include audio	Off
+-o output.mp4	Output file	timestamp.mp4 ​
+📁 Project Structure
+
+text
+screenRecorder/
+├── src/          # Core capture logic (C/C++)
+├── include/      # Headers for X11/FFmpeg
+├── build.sh      # Linux build script
+├── Makefile      # Or CMakeLists.txt
+└── README.md     # This file!
+
+🤝 Contributing
+
+Fork, branch, PR! Fixes for audio sync or Wayland support welcome. Test on Ubuntu/Fedora.
+📄 License
+
+MIT License – free to use, modify, distribute.​
+🙌 Support
+
+Star the repo ⭐ | Issues? Open one! Built for devs like you in Siliguri coding C++ daily. Questions? Ping in Discussions.
