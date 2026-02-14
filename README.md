@@ -15,7 +15,6 @@ Linux Screen Recorder is a simple, terminal-based tool that uses FFmpeg to captu
 
     Prerequisites (one command on Ubuntu/Debian):
 
-    text
     sudo apt update && sudo apt install ffmpeg pulseaudio-utils x11-utils xrandr
 
     PulseAudio for system audio monitor.​
