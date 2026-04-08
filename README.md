@@ -237,4 +237,4 @@ MIT License
 ## 👨‍💻 Author
 
 Built with 💻 + ☕ by Dip 
-Industrial-grade terminal engineering 😄
+
